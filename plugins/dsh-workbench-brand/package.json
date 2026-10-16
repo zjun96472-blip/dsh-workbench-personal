@@ -1,0 +1,27 @@
+{
+  "name": "dsh-workbench-brand",
+  "version": "0.1.0",
+  "private": true,
+  "description": "本地个人工作台品牌：接管 Web 客户端侧边栏的 sidebar.brand.mark / sidebar.brand.name 插槽",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "license": "MIT"
+}

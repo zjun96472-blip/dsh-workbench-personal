@@ -1,0 +1,44 @@
+{
+  "name": "dsh-workbench-personal",
+  "version": "0.1.0",
+  "description": "个人工作台（可安装包）：主机侧的记忆每轮自动注入 + 计划投影，客户端侧的工作台页 / 记忆库页 / 能力库 / 试作页 / 计划视图，可整包 `dsh plugin add` 装进任意 profile。",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/",
+    "plugins/",
+    "tools/",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "workbench"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}

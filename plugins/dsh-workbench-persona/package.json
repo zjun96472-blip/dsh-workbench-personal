@@ -1,0 +1,29 @@
+{
+  "name": "dsh-workbench-persona",
+  "version": "0.1.0",
+  "private": true,
+  "description": "个人工作台常驻主控的形象插件：桌宠「深潜小灯」——浮层里可拖动、会呼吸、会应声的常驻小家伙（外加空白会话问候位与侧边栏页脚身份卡）",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "license": "MIT"
+}

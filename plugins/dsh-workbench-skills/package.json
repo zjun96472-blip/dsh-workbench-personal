@@ -1,0 +1,15 @@
+{
+ "name": "dsh-workbench-skills",
+ "version": "0.1.0",
+ "private": true,
+ "description": "把 data/skills 下的每条技能注册成一个 / 命令（主机侧），让输入框的 / 菜单里能直接点名调用技能",
+ "type": "module",
+ "main": "lib/index.js",
+ "exports": {
+  ".": {
+   "default": "./lib/index.js"
+  },
+  "./package.json": "./package.json"
+ },
+ "license": "MIT"
+}

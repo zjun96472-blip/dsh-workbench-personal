@@ -1,0 +1,40 @@
+# dsh-workbench-personal 这个包带进 profile 的插件行（bundle 层）。
+#
+# 关键：`insert` 里**相对路径**的 name 会被锚定到**本文件所在目录**
+# （@deepseek-ai/dsh-app-boot 的 anchorInsertedPluginNames：`new URL(name, patch 文件)`），
+# 所以 `./plugins/...` 指的是**包内自己的**目录，不是 profile 目录，更不是别人的机器上的某个绝对路径。
+# 裸包名（下面第一条）则按 Node 的常规解析链走 profile 的 node_modules。
+
+# 我们自己的品牌要占 sidebar.brand.mark / sidebar.brand.name（kind: "single"，
+# 已有占用者时再注册会抛错），所以先禁用官方那位。
+# 目标行不存在时 Loader 只给一条 warning（不会失败）—— 所以没有 web-app 的 profile 也装得下这个包。
+- id: ui-brand-official
+  name: "@deepseek-ai/dsh-client-ui-brand-official"
+  disabled: true
+
+- insert:
+    # ① 主机半边（本包的 main）：记忆自动注入 + 计划投影 + 把页面开关下发到页面；
+    #    同一个包还提供客户端半边（exports["./client"]）＝ 工作台页 / 记忆库页 / 试作页 / 计划视图。
+    - id: workbench-personal
+      name: dsh-workbench-personal
+      config:
+        dshHome: ""
+        memory:
+          enabled: true
+          budget: 1200
+        planBook:
+          enabled: true
+        pages:
+          home: true
+          memory: true
+          audition: true
+          planBook: true
+    # ② 界面：自己的品牌（接管侧边栏 mark / name）
+    - id: workbench-brand
+      name: "./plugins/dsh-workbench-brand/lib/index.js"
+    # ③ 界面：常驻形象（侧边栏页脚身份卡）
+    - id: workbench-persona
+      name: "./plugins/dsh-workbench-persona/lib/index.js"
+    # ④ 主机侧：把 $DSH_HOME/skills 下每条技能注册成 `/` 命令（技能目录不存在就安静地什么都不注册）
+    - id: workbench-skills
+      name: "./plugins/dsh-workbench-skills/lib/index.js"
